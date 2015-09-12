@@ -1,0 +1,37 @@
+#!/bin/env ruby
+require 'ff_task_generator'
+
+def parse_range(str)
+  list = str.split('-')
+  ((list[0].to_i)..(list[1].to_i))
+end
+
+usage = <<-USAGE
+           Usage: ff_task_generator INPUT_DIR WINE_INPUT_PATH WINE_OUTPUT_PATH TEMPLATE_PATH [-r RANGE]
+           Example: ff_task_generator ./input Z:\\input Z:\\output ./tasks.xml.erb -r 0-500
+USAGE
+
+options = {range: 0..300}
+
+OptionParser.new do |opts|
+  opts.banner = usage
+
+  opts.on('-r', '--range range', 'Set range') do |v|
+    options[:range] = parse_range(v)
+  end
+end.parse!
+
+if ARGV.count < 4
+  puts 'Some anrguments is missing'
+  puts usage
+  exit(1)
+end
+
+input_dir = File.expand_path(ARGV[0])
+wine_input_path = ARGV[1]
+wine_output_path = ARGV[2]
+template_path = File.expand_path(ARGV[3])
+
+range = options[:range]
+
+puts FfTaskGenerator::InputDirReader.new(path: input_dir, range: range, template_path: template_path, input_path: wine_input_path, output_path: wine_output_path).generate_xml!
