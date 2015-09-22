@@ -32,7 +32,7 @@ class FfTaskGenerator::InputDirReader
 
   def range(file)
     if @task[file].present?
-      0..@task[file][:count]
+      0..@task[file].first[:count]
     else
       @range
     end
