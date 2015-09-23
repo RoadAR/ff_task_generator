@@ -22,7 +22,7 @@ OptionParser.new do |opts|
 end.parse!
 
 if ARGV.count < 4
-  puts 'Some anrguments is missing'
+  puts 'Some arguments is missing'
   puts usage
   exit(1)
 end
@@ -34,4 +34,6 @@ template_path = File.expand_path(ARGV[3])
 
 range = options[:range]
 
-puts FfTaskGenerator::InputDirReader.new(path: input_dir, range: range, template_path: template_path, input_path: wine_input_path, output_path: wine_output_path).generate_xml!
+files = FfTaskGenerator::InputDirReader.new(path: input_dir, range: range, input_path: wine_input_path, output_path: wine_output_path).input_files
+
+puts FfTaskGenerator::XMLGenerator.new(template_path, files).generate_xml!

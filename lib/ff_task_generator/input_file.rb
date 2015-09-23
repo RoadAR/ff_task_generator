@@ -21,6 +21,11 @@ class FfTaskGenerator::InputFile
   end
 
   def docker_output_path
-    "#{@output_path}\\#{@path}\\#{@name}_synth_#{@preset}#{@extension}"
+    if @path == '.'
+      "#{@output_path}\\#{@name}_synth_#{@preset}#{@extension}"
+    else
+      "#{@output_path}\\#{@path}\\#{@name}_synth_#{@preset}#{@extension}"
+    end
+
   end
 end
