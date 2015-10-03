@@ -21,7 +21,7 @@ class FfTaskGenerator::InputDirReader
 
   def range(file)
     if !@task[file].nil?
-      0...@task[file].first[:count]
+      1...(@task[file].first[:count] + 1)
     else
       @range
     end
