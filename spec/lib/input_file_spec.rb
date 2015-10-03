@@ -12,7 +12,7 @@ describe FfTaskGenerator::InputFile do
 
     describe '#docker_output_path' do
       it 'returns output path in wine notation for docker' do
-        expect(input_file.docker_output_path).to eq('Z:\\output\\1_synth_123.png')
+        expect(input_file.docker_output_path).to eq('Z:\\output\\1_synth_123.jpg')
       end
     end
   end
@@ -28,7 +28,7 @@ describe FfTaskGenerator::InputFile do
 
     describe '#docker_output_path' do
       it 'returns output path in wine notation for docker' do
-        expect(input_file.docker_output_path).to eq('Z:\\output\\test\\1_synth_123.png')
+        expect(input_file.docker_output_path).to eq('Z:\\output\\test\\1_synth_123.jpg')
       end
     end
   end

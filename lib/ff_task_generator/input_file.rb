@@ -11,8 +11,8 @@ class FfTaskGenerator::InputFile
     @input_path = input_path
     @output_path = output_path
 
-    @extension = File.extname(path)
-    @name = File.basename(path, @extension)
+    extension = File.extname(path)
+    @name = File.basename(path, extension)
     @path = File.dirname(@relative_path).gsub('/', '\\')
   end
 
@@ -22,9 +22,9 @@ class FfTaskGenerator::InputFile
 
   def docker_output_path
     if @path == '.'
-      "#{@output_path}\\#{@name}_synth_#{@preset}#{@extension}"
+      "#{@output_path}\\#{@name}_synth_#{@preset}.jpg"
     else
-      "#{@output_path}\\#{@path}\\#{@name}_synth_#{@preset}#{@extension}"
+      "#{@output_path}\\#{@path}\\#{@name}_synth_#{@preset}.jpg"
     end
 
   end
