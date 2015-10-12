@@ -1,5 +1,5 @@
 class FfTaskGenerator::InputFile
-  attr_reader :preset
+  attr_reader :preset, :relative_path, :input_path, :output_path, :name, :path
 
   def initialize(input_root:, path:, preset:, input_path:, output_path:)
     file_pathname = Pathname.new(path)
@@ -26,6 +26,5 @@ class FfTaskGenerator::InputFile
     else
       "#{@output_path}\\#{@path}\\#{@name}_synth_#{@preset}.jpg"
     end
-
   end
 end
